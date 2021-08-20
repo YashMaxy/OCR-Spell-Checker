@@ -49,7 +49,6 @@ def main():
   data.dropna(inplace=True)
   
   for idx in data.index:
-    print(data['text'][idx])
     if data['conf'][idx]<spell_conf:
       data['text'][idx] = checkAndCorrect(data['text'][idx])
 
@@ -61,62 +60,3 @@ def main():
 
 if __name__ == "__main__":
   main()
-# image = cv2.imread('Data\Assignment_1.tiff')
-# image = cv2.cvtColor(cv2.medianBlur(image,3), cv2.COLOR_BGR2RGB)
-# text = pytesseract.image_to_data(image, lang = 'eng', output_type='data.frame',  config='--oem 1')
-
-# text = text[text.conf <20]
-
-# # text['new'] = text['text']*
-# lines = text.groupby(['page_num', 'block_num', 'par_num', 'line_num'])['text'].apply(lambda x: ' '.join(list(x))).tolist()
-
-
-# results = text
-
-# text['corrected_text'] = text['text'].apply(spell)
-
-# err = text[text['new']!=text['text']].reset_index(drop=True)
-
-# for i in range(0, len(err["text"])):
-      
-#     # We can then extract the bounding box coordinates
-#     # of the text region from  the current result
-#     x = err["left"][i]
-#     y = err["top"][i]
-#     w = err["width"][i]
-#     h = err["height"][i]
-#     text_ = err['text'][i]
-#     # We will also extract the OCR text itself along
-#     # with the confidence of the text localization
-#     _text = err["new"][i]
-#     conf = int(err["conf"][i])
-      
-#     # filter out weak confidence text localizations
-#     if conf <90:
-          
-#         # We will display the confidence and text to
-#         # our terminal
-#         # print("Confidence: {}".format(conf))
-#         # print("Text: {}".format(text))
-#         # print("")
-          
-#         # We then strip out non-ASCII text so we can
-#         # draw the text on the image We will be using
-#         # OpenCV, then draw a bounding box around the
-#         # text along with the text itself
-#         cv2.rectangle(image,
-#                       (x, y),
-#                       (x + w, y + h),
-#                       (255, 255, 0), 2)
-#         cv2.putText(image,
-#                     text_,
-#                     (x, y -3), 
-#                     cv2.FONT_HERSHEY_SIMPLEX,
-#                     0.6, (255, 0, 0), 2)
-#         cv2.putText(image,
-#                     _text+' '+str(conf),
-#                     (x, y +h +10), 
-#                     cv2.FONT_HERSHEY_SIMPLEX,
-#                     0.6, (255, 0, 255), 2)
-        
-# cv2.imwrite("Image.png",img=image)
